@@ -1,0 +1,443 @@
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+
+:root {
+  --paper: #efe6d6;
+  --paper-deep: #e4d8c2;
+  --ink: #241f18;
+  --ink-soft: #5b5344;
+  --forest: #33473a;
+  --forest-deep: #24352a;
+  --rust: #a45a35;
+  --line: #c9bc9e;
+
+  --serif-jp: "Shippori Mincho", serif;
+  --serif-en: "Cormorant Garamond", serif;
+  --sans-jp: "Zen Kaku Gothic New", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--paper);
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(36, 31, 24, 0.06) 1px,
+      transparent 0
+    );
+  background-size: 22px 22px;
+  color: var(--ink);
+  font-family: var(--sans-jp);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--forest);
+  color: var(--paper);
+}
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 40px clamp(20px, 6vw, 64px) 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-title {
+  font-family: var(--serif-jp);
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: 0.06em;
+}
+
+.site-title small {
+  display: block;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.site-nav a {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--ink-soft);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 6vw, 64px);
+}
+
+/* --- 図鑑グリッド --- */
+
+.specimen-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin: 48px 0 80px;
+}
+
+.specimen-card {
+  background: var(--paper);
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background-color 0.15s ease;
+}
+
+.specimen-card:hover {
+  background: var(--paper-deep);
+}
+
+.specimen-index {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--rust);
+}
+
+.specimen-photo {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  position: relative;
+}
+
+.specimen-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.08) contrast(1.02);
+}
+
+.specimen-name {
+  font-family: var(--serif-jp);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.specimen-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.specimen-tags span::before {
+  content: "・";
+  color: var(--forest);
+}
+
+.empty-note {
+  border: 1px dashed var(--line);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 48px 0;
+}
+
+/* --- 詳細ページ --- */
+
+.entry-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 720px) {
+  .entry-header {
+    grid-template-columns: 1fr;
+  }
+}
+
+.entry-photo {
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.entry-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.entry-index {
+  font-family: var(--serif-en);
+  font-style: italic;
+  color: var(--rust);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.entry-name {
+  font-family: var(--serif-jp);
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.3;
+}
+
+.entry-bio {
+  margin-top: 18px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  max-width: 56ch;
+  white-space: pre-wrap;
+}
+
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.tag-pill {
+  border: 1px solid var(--forest);
+  color: var(--forest-deep);
+  font-size: 12px;
+  padding: 4px 12px;
+  letter-spacing: 0.04em;
+}
+
+.gallery-label {
+  font-family: var(--serif-en);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin: 44px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 64px;
+}
+
+.media-item {
+  border: 1px solid var(--line);
+  background: var(--paper-deep);
+  overflow: hidden;
+}
+
+.media-item img,
+.media-item video {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- 管理画面 --- */
+
+.admin-shell {
+  min-height: 100vh;
+}
+
+.admin-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: clamp(20px, 4vw, 36px);
+}
+
+.admin-title {
+  font-family: var(--serif-jp);
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-row label {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="password"],
+.form-row textarea,
+.form-row input[type="file"] {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--forest-deep);
+  background: var(--forest-deep);
+  color: var(--paper);
+  padding: 11px 22px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--forest);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--forest-deep);
+}
+
+.btn-outline:hover {
+  background: var(--forest-deep);
+  color: var(--paper);
+}
+
+.btn-danger {
+  border-color: #7a2f22;
+  background: transparent;
+  color: #7a2f22;
+}
+
+.btn-danger:hover {
+  background: #7a2f22;
+  color: #fff;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.status-pill {
+  font-size: 11px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.status-pill.published {
+  border-color: var(--forest);
+  color: var(--forest-deep);
+}
+
+.row-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.error-text {
+  color: #7a2f22;
+  font-size: 13px;
+  margin-top: -8px;
+  margin-bottom: 14px;
+}
+
+.thumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumb-list .thumb {
+  width: 84px;
+  height: 84px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+  background: var(--paper-deep);
+}
+
+.thumb img,
+.thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb .remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(36, 31, 24, 0.75);
+  color: #fff;
+  border: none;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
