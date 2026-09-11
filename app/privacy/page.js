@@ -37,7 +37,13 @@ export default function PrivacyPage() {
         </p>
 
         <h2 style={{ fontSize: 16, marginTop: 32, marginBottom: 8 }}>お問い合わせ</h2>
-        <p>本ポリシーに関するお問い合わせは運営者までご連絡ください。</p>
+        <p>
+          本ポリシーに関するお問い合わせ・個人情報の開示請求は、
+          <Link href="/tokushoho" style={{ textDecoration: "underline" }}>
+            特定商取引法に基づく表記
+          </Link>
+          に記載の連絡先までご連絡ください。
+        </p>
       </div>
     </div>
   );
