@@ -59,6 +59,7 @@ export default function AdminListPage() {
           <small>Admin</small>
         </div>
         <nav className="site-nav" style={{ display: "flex", gap: 18 }}>
+          <Link href="/admin/game">ゲーム管理</Link>
           <Link href="/">サイトを見る</Link>
           <button className="btn-outline btn" onClick={logout}>
             ログアウト

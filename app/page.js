@@ -20,6 +20,7 @@ export default async function HomePage() {
           <small>An Illustrated Catalogue</small>
         </div>
         <nav className="site-nav" style={{ display: "flex", gap: 18 }}>
+          <Link href="/play">ゲームで遊ぶ</Link>
           <Link href="/join">会員登録</Link>
           <Link href="/login">ログイン</Link>
           <Link href="/admin">投稿管理</Link>
