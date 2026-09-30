@@ -1,0 +1,96 @@
+/* ゲーム画面専用スタイル。すべて .rg 配下にスコープ（サイト共通CSSと衝突させない） */
+.rg { min-height: 100vh; }
+.rg { --paper: #efe6d6; --paper-deep: #e4d8c2; --ink: #241f18; --ink-soft: #5b5344;
+    --forest: #33473a; --forest-deep: #24352a; --rust: #a45a35; --line: #c9bc9e; --pink: #b5556b; }
+.rg, .rg * { box-sizing: border-box; }
+.rg { background: var(--paper); color: var(--ink); font-family: "Zen Kaku Gothic New", sans-serif;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased; }
+.rg .wrap { max-width: 480px; margin: 0 auto; padding: 20px 16px 60px; }
+.rg .site-title { font-family:"Shippori Mincho",serif; font-weight:800; font-size:22px; letter-spacing:.05em; }
+.rg .site-title small { display:block; font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400; font-size:12px; letter-spacing:.14em; color:var(--ink-soft); margin-top:4px; }
+.rg .sub { color: var(--ink-soft); font-size: 12px; margin: 6px 0 16px; }
+.rg .card { background: color-mix(in srgb, var(--paper) 60%, white 5%); border: 1px solid var(--line); padding: 16px; margin-bottom: 14px; }
+.rg .btn { display:inline-flex; align-items:center; justify-content:center; padding:11px 20px; border:1px solid var(--forest-deep); background:var(--forest-deep); color:var(--paper); font-size:13px; font-weight:700; font-family:inherit; cursor:pointer; }
+.rg .btn:hover { background: var(--forest); }
+.rg .btn.outline { background: transparent; color: var(--forest-deep); border-color: var(--forest-deep); }
+.rg .btn.small { padding: 7px 14px; font-size: 12px; }
+.rg .btn:disabled { opacity: .4; cursor: not-allowed; }
+.rg .hint { font-size: 11px; color: var(--ink-soft); }
+.rg input[type="text"] { width: 100%; border: 1px solid var(--line); background: var(--paper); color: var(--ink);
+    padding: 10px 12px; font-size: 14px; font-family: inherit; margin-top: 8px; }
+.rg .tabbar { display: flex; gap: 8px; margin-bottom: 16px; }
+.rg .tabbar .btn { flex: 1; }
+.rg /* 盤面 */
+  .board-wrap { text-align: center; }
+.rg .squares { display: flex; flex-wrap: wrap; justify-content: center; }
+.rg .sq { display:inline-flex; width:26px; height:26px; margin:2px; align-items:center; justify-content:center; font-size:12px; border:2px solid var(--line); background:#fff; position:relative; }
+.rg .sq.here { background: var(--forest-deep); border-color: var(--forest-deep); color: #fff; }
+.rg .sq.assigned { background: #f6ecd8; border-color: var(--rust); }
+.rg .sq.reserved { background: #f4d9e0; border-color: var(--pink); }
+.rg .sq.goal { background: #dcecdf; border-color: var(--forest); }
+.rg .energy-badge { display:inline-flex; align-items:center; gap:5px; font-size:12px; color: var(--ink-soft); }
+.rg .boost-row { display:flex; gap:8px; margin-top:14px; }
+.rg .boost-row .btn { flex: 1; }
+.rg /* 図鑑 */
+  .roster { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 4px 0 18px; }
+.rg .roster-card { background: var(--paper); padding: 14px 12px; display:flex; flex-direction:column; gap:8px; }
+.rg .roster-card.locked { opacity: .55; }
+.rg .roster-index { font-family:"Cormorant Garamond",serif; font-style:italic; font-size:11px; color:var(--rust); }
+.rg .avatar { aspect-ratio:3/4; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:32px; background:linear-gradient(160deg,var(--paper-deep),var(--paper)); }
+.rg .avatar,.rg .dialog-avatar { overflow:hidden; }
+.rg .avatar img,.rg .dialog-avatar img { width:100%;  object-fit:cover; display:block; }
+.rg .face-mini { width:24px; height:24px; border-radius:50%; object-fit:cover; vertical-align:middle; margin-right:4px; border:1px solid var(--line); }
+.rg .avatar.silhouette { font-size: 26px; filter: grayscale(1) brightness(.6); }
+.rg .roster-name { font-family:"Shippori Mincho",serif; font-weight:600; font-size:14px; }
+.rg .roster-status { font-size: 10px; color: var(--ink-soft); }
+.rg .heart-row { display:flex; gap:2px; }
+.rg .heart { font-size:10px; opacity:.25; }
+.rg .heart.filled { opacity: 1; }
+.rg .log-line { padding:3px 0; font-size:12px; line-height:1.7; color:var(--ink-soft); border-bottom:1px dashed var(--line); }
+.rg .log-line:last-child { border-bottom: none; }
+.rg /* ダイアログ */
+  .overlay { position:fixed; inset:0; background:rgba(20,16,10,.55); z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px; }
+.rg .dialog { background: var(--paper); border:1px solid var(--line); max-width:380px; width:100%; padding:18px; box-shadow:0 20px 60px rgba(0,0,0,.35); }
+.rg .dialog.obtained { border-color: var(--rust); }
+.rg .dialog-head { display:flex; gap:12px; align-items:flex-start; }
+.rg .dialog-avatar { width:60px; height:60px; flex-shrink:0; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:26px; background:linear-gradient(160deg,var(--paper-deep),var(--paper)); }
+.rg .dialog-name { font-size:11px; font-weight:800; color:var(--ink-soft); margin-bottom:5px; letter-spacing:.04em; }
+.rg .dialog-line { background: var(--paper-deep); border:1px solid var(--line); padding:10px 12px; font-size:13px; line-height:1.7; }
+.rg .dialog-narration { margin-top:12px; padding:9px 12px; background:#eaf3ec; border:1px solid var(--forest); color:var(--forest-deep); font-weight:700; font-size:12px; text-align:center; }
+.rg .dialog-narration.obtain { background:#faf1df; border-color:var(--rust); color:var(--rust); }
+.rg textarea,.rg select,.rg input[type="number"] { width:100%; border:1px solid var(--line); background:var(--paper); color:var(--ink);
+    padding:8px 10px; font-size:13px; font-family:inherit; margin-top:4px; }
+.rg textarea { min-height:70px; resize:vertical; }
+.rg .field { margin-bottom:10px; }
+.rg .field > label { font-size:11px; color:var(--ink-soft); }
+.rg .page-box { border:1px solid var(--line); padding:12px; margin-bottom:12px; background:color-mix(in srgb, var(--paper) 70%, white 5%); }
+.rg .page-box h4 { margin:0 0 8px; font-size:12px; color:var(--rust); font-family:"Cormorant Garamond",serif; font-style:italic; }
+.rg .branch { margin-top:10px; padding-left:8px; border-left:1px dashed var(--line); }
+.rg .choice-box { border-left:3px solid var(--forest); padding:8px 10px; margin-top:8px; background:var(--paper-deep); }
+.rg .row2 { display:flex; gap:8px; }
+.rg .row2 > * { flex:1; }
+.rg .sc-row { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 0; border-bottom:1px dashed var(--line); }
+.rg .media-preview img,.rg .media-preview video,.rg .dialog-media img,.rg .dialog-media video { max-width:100%; max-height:200px; display:block; margin-top:6px; border:1px solid var(--line); }
+.rg .dialog-media { margin-top:10px; }
+.rg .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.rg .gallery-tile { position:relative; aspect-ratio:1/1; border:1px solid var(--line); background:var(--paper-deep); overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.rg .gallery-tile.locked { cursor:default; opacity:.5; font-size:18px; }
+.rg .gallery-tile img,.rg .gallery-tile video { width:100%;  object-fit:cover; display:block; margin:0; border:none; }
+.rg .tc-scroll { position: relative; overflow: auto; max-height: 62vh; border: 1px solid var(--line); background: #fff; margin-bottom: 14px; }
+.rg .tc-canvas { position: relative; min-width: 100%; }
+.rg .tc-svg { position: absolute; left: 0; top: 0; pointer-events: none; }
+.rg .tc-edge-label { font-size: 10px; fill: var(--ink-soft); }
+.rg .tc-node {
+  position: absolute; background: var(--paper); border: 2px solid var(--forest-deep); border-radius: 4px;
+  padding: 8px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.12); transition: box-shadow .15s ease;
+}
+.rg .tc-node:hover { box-shadow: 0 2px 8px rgba(0,0,0,.22); }
+.rg .tc-node-orphan { border-color: var(--rust); border-style: dashed; }
+.rg .tc-node-head { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px; color: var(--ink-soft); }
+.rg .tc-node-body { display: flex; gap: 6px; align-items: flex-start; }
+.rg .tc-thumb { width: 28px; height: 28px; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; }
+.rg .tc-node-text { font-size: 11px; line-height: 1.5; }
+.rg .tc-node-ending { margin-top: 6px; font-size: 10px; color: var(--rust); font-weight: 700; }
+.rg .gallery-tile .play { position:absolute; color:#fff; font-size:20px; text-shadow:0 1px 4px rgba(0,0,0,.6); pointer-events:none; }
+.rg .dialog-actions { display:flex; gap:8px; justify-content:center; margin-top:16px; }
