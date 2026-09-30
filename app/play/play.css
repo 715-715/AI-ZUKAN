@@ -77,5 +77,20 @@
 .rg .gallery-tile { position:relative; aspect-ratio:1/1; border:1px solid var(--line); background:var(--paper-deep); overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer; }
 .rg .gallery-tile.locked { cursor:default; opacity:.5; font-size:18px; }
 .rg .gallery-tile img,.rg .gallery-tile video { width:100%;  object-fit:cover; display:block; margin:0; border:none; }
+.rg .tc-scroll { position: relative; overflow: auto; max-height: 62vh; border: 1px solid var(--line); background: #fff; margin-bottom: 14px; }
+.rg .tc-canvas { position: relative; min-width: 100%; }
+.rg .tc-svg { position: absolute; left: 0; top: 0; pointer-events: none; }
+.rg .tc-edge-label { font-size: 10px; fill: var(--ink-soft); }
+.rg .tc-node {
+  position: absolute; background: var(--paper); border: 2px solid var(--forest-deep); border-radius: 4px;
+  padding: 8px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.12); transition: box-shadow .15s ease;
+}
+.rg .tc-node:hover { box-shadow: 0 2px 8px rgba(0,0,0,.22); }
+.rg .tc-node-orphan { border-color: var(--rust); border-style: dashed; }
+.rg .tc-node-head { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px; color: var(--ink-soft); }
+.rg .tc-node-body { display: flex; gap: 6px; align-items: flex-start; }
+.rg .tc-thumb { width: 28px; height: 28px; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; }
+.rg .tc-node-text { font-size: 11px; line-height: 1.5; }
+.rg .tc-node-ending { margin-top: 6px; font-size: 10px; color: var(--rust); font-weight: 700; }
 .rg .gallery-tile .play { position:absolute; color:#fff; font-size:20px; text-shadow:0 1px 4px rgba(0,0,0,.6); pointer-events:none; }
 .rg .dialog-actions { display:flex; gap:8px; justify-content:center; margin-top:16px; }
